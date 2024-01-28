@@ -19,7 +19,6 @@ package com.awaken.device.DeviceExtras;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.SystemProperties;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
@@ -37,12 +36,8 @@ public class DCModeSwitch implements OnPreferenceChangeListener {
     }
 
     public static boolean isSupported() {
-        if (SystemProperties.get("ro.overlay.device", "").equals("instantnoodlep")) {
-            return FileUtils.fileWritable(getFile());
-        } else {
-            return false;
-        }
-    }    
+        return FileUtils.fileWritable(getFile());
+    }
 
     public static boolean isCurrentlyEnabled(Context context) {
         return FileUtils.getFileValueAsBoolean(getFile(), false, "0 1", "0 0");

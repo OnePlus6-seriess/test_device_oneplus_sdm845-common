@@ -19,12 +19,9 @@
 package com.awaken.device.DeviceExtras;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
-import android.os.SystemProperties;
 import android.provider.Settings;
 import androidx.preference.PreferenceManager;
 
@@ -32,18 +29,7 @@ public class Startup extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent bootintent) {
-        PackageManager pm = context.getApplicationContext().getPackageManager();
-        ComponentName componentName = new ComponentName("com.awaken.device.DeviceExtras",
-    "com.awaken.device.DeviceExtras.DCModeTileService");
-        if (SystemProperties.get("ro.overlay.device", "").equals("instantnoodlep")) {
-            pm.setComponentEnabledSetting(componentName,
-            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-            PackageManager.DONT_KILL_APP);
-        } else {
-            pm.setComponentEnabledSetting(componentName,
-            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-            PackageManager.DONT_KILL_APP);
-        }    
+
         boolean enabled = false;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         enabled = sharedPrefs.getBoolean(DeviceExtras.KEY_HBM_SWITCH, false);
