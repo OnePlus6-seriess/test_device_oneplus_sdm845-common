@@ -170,6 +170,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.class_main.sh \
+    init.deviceextras.rc \
     init.oem.rc \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
@@ -188,6 +189,10 @@ PRODUCT_COPY_FILES += \
 
 # DebugFS
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
+
+# DeviceExtras
+PRODUCT_PACKAGES += \
+    DeviceExtras
 
 # Display
 PRODUCT_PACKAGES += \
@@ -402,7 +407,6 @@ PRODUCT_PACKAGES += \
 
 # tri-state-key
 PRODUCT_PACKAGES += \
-    KeyHandler \
     tri-state-key_daemon.vendor
 
 # Trust HAL
